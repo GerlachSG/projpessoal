@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculadora de Endereço IP</title>
+	<style>
+		body {
+			background-color: black;
+			color: white;
+			font-family: Arial, sans-serif;
+			text-align: center;
+		}
+
+		h1 {
+			font-size: 36px;
+		}
+
+		.container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 20px;
+		}
+
+		.box {
+			width: 500px;
+			background-color: #333333;
+			padding: 20px;
+			border-radius: 14px;
+			margin: 10px;
+			box-shadow: 5px 5px 20px rgba(255, 100, 255, 0.3);
+		}
+
+		label {
+			display: block;
+			margin-bottom: 30px;
+			font-size: 21px;
+		}
+
+		input[type="text"] {
+			font-size: 21px;
+			padding: 5px;
+			border-radius: 7px;
+			border: none;
+			background-color: #555555;
+			color: white;
+			width: 100%;
+			margin-bottom: 20px;
+		}
+
+		input[type="button"] {
+			font-size: 20px;
+			padding: 10px;
+			border-radius: 7px;
+			border: none;
+			background-color: #444444;
+			color: white;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+
+		input[type="button"]:hover {
+			background-color: #2b2a2a;
+		}
+
+		.result {
+			font-size: 20px;
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Calculadora de Endereço IP</h1>
+
+	<div class="container">
+		<div class="box">
+			<label for="binaryIP">Endereço IP em Binário:</label>
+			<input type="text" id="binaryIP" placeholder="Digite o endereço em binário" autofocus>
+			<input type="button" value="Calcular Endereço IP Decimal" onclick="calculateDecimal()">
+			<label for="decimalIP"></label>
+			<input type="text" id="decimalIP" placeholder="Resultado IP" readonly>
+		</div>
+
+		<div class="box">
+			<label for="decimalIP2">Endereço IP Decimal:</label>
+			<input type="text" id="decimalIP2" placeholder="Digite o endereço em decimal" autofocus>
+			<input type="button" value="Calcular Endereço IP Binário" onclick="calculateBinary()">
+			<label for="binaryIP2"></label>
+			<input type="text" id="binaryIP2" placeholder="Resultado Binário" readonly>
+		</div>
+	</div>
+
+	<script>
+		// Função para converter um endereço IP binário em decimal
+		function calculateDecimal() {
+			// Obter o valor do campo de entrada do endereço IP binário
+			binaryIP = document.getElementById("binaryIP").value;
+
+			// Separar os 4 octetos do endereço IP binário
+			var octets = binaryIP.split(".");
+
+			// Converter cada octeto de binário para
+		var decimalOctets = octets.map(function(octet) {
+			return parseInt(octet, 2);
+		});
+
+		// Montar o endereço IP decimal a partir dos octetos convertidos
+		var decimalIP = decimalOctets.join(".");
+
+		// Exibir o endereço IP decimal no campo de resultado
+		document.getElementById("decimalIP").value = decimalIP;
+	}
+
+	// Função para converter um endereço IP decimal em binário
+	function calculateBinary() {
+		// Obter o valor do campo de entrada do endereço IP decimal
+		decimalIP = document.getElementById("decimalIP2").value;
+
+		// Separar os 4 octetos do endereço IP decimal
+		var octets = decimalIP.split(".");
+
+		// Converter cada octeto de decimal para binário e completar com zeros à esquerda
+		var binaryOctets = octets.map(function(octet) {
+			return ("00000000" + parseInt(octet, 10).toString(2)).substr(-8);
+		});
+
+		// Montar o endereço IP binário a partir dos octetos convertidos
+		var binaryIP = binaryOctets.join(".");
+
+		// Exibir o endereço IP binário no campo de resultado
+		document.getElementById("binaryIP2").value = binaryIP;
+	}
+</script>
+</body>
+</html>
