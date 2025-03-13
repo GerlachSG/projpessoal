@@ -1,4 +1,4 @@
 # projpessoal
 Repositório destinado projetos pessoais.
 
-- Calculadora IP: https://igorgerlach.github.io/projpessoal/
+- Calculadora IP: https://gerlachsg.github.io/projpessoal/
